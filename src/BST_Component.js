@@ -76,7 +76,7 @@ function BST_Component() {
 
     const searchKeyInBinaryTree = () => {
         if (BST_Tree.root !== null) {
-            const searchedKeyNode = BST_Tree.search(BST_Tree.root, Number(searchKey));
+            const searchedKeyNode = BST_Tree.search(BST_Tree.root, Number(searchKey), setRefreshTree);
             if (!searchedKeyNode) {
                 setSearchKeyFound(true);
                 setRefreshTree(!refreshTree)

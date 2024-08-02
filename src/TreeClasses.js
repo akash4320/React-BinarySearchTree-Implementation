@@ -1,3 +1,5 @@
+// Returns a Promise that resolves after "ms" Milliseconds
+export const timer = ms => new Promise(res => setTimeout(() => res(), ms))
 export class Node {
   constructor(val) {
     this.data = val;
@@ -82,36 +84,44 @@ export class BinarySearchTree {
   }
 
   // search for a node with given data
-  search(node, data, cnt = 1) {
+  async search(node, data, setRefreshTree) {
     // if trees is empty return null
     if (node !== null) {
       node.isSearched = true;
+      setRefreshTree((refreshTree) => !refreshTree)
+      await timer(300);
     }
     if (node === null) {
-      return setTimeout(() => {
-        return null;
-      }, 1000*cnt)
-
+      setRefreshTree((refreshTree) => !refreshTree)
+      await timer(300);
+      return null;
     }
-
 
     // if data is less than node's data
     // move left
-    else if (data < node.data)
-      return this.search(node.left, data, cnt*2);
+    else if (data < node.data) {
+      node.isSearched = false;
+      setRefreshTree((refreshTree) => !refreshTree)
+      await timer(300);
+      return this.search(node.left, data, setRefreshTree);
+    }
+
 
     // if data is more than node's data
     // move right
-    else if (data > node.data)
-      return this.search(node.right, data, cnt*2);
-
+    else if (data > node.data) {
+      node.isSearched = false;
+      setRefreshTree((refreshTree) => !refreshTree)
+      await timer(300);
+      return this.search(node.right, data, setRefreshTree);
+    }
     // if data is equal to the node data 
     // return node
     else {
-      return setTimeout(() => {
-        node.isSearched = false;
-        return node;
-      }, 1000)
+      node.isSearched = false;
+      setRefreshTree((refreshTree) => !refreshTree)
+      await timer(300);
+      return node;
     }
   }
 }
