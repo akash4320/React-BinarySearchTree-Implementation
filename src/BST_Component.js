@@ -36,7 +36,7 @@ function BST_Component() {
         // createBinarySearchTree()
     }, [])
 
-    const constructNode = (value, isRootData) => <div class={isRootData ? 'person' : 'person child'}>
+    const constructNode = (value, isRootData) => <div class={`person ${isRootData? '': 'child'}`}>
         <div class="name">{value}</div>
     </div>
 
