@@ -128,3 +128,11 @@
 .tree li .parent .person:hover + ul ul::before {
   border-color: #ff8300;
 }
+
+.searchingComp {
+  border-color: #ff8300;
+}
+
+.searchedFound {
+  background-color: #f4d27b;
+}

@@ -3,6 +3,7 @@ export class Node {
     this.data = val;
     this.left = null;
     this.right = null;
+    this.isSearched = false;
   }
 }
 // Binary Search tree class
@@ -71,4 +72,46 @@ export class BinarySearchTree {
     }
   }
 
+  // Performs preorder traversal of a tree    
+  preOrderSetTraverse(node) {
+    if (node !== null) {
+      node.isSearched = false;
+      this.preOrderSetTraverse(node.left);
+      this.preOrderSetTraverse(node.right);
+    }
+  }
+
+  // search for a node with given data
+  search(node, data, cnt = 1) {
+    // if trees is empty return null
+    if (node !== null) {
+      node.isSearched = true;
+    }
+    if (node === null) {
+      return setTimeout(() => {
+        return null;
+      }, 1000*cnt)
+
+    }
+
+
+    // if data is less than node's data
+    // move left
+    else if (data < node.data)
+      return this.search(node.left, data, cnt*2);
+
+    // if data is more than node's data
+    // move right
+    else if (data > node.data)
+      return this.search(node.right, data, cnt*2);
+
+    // if data is equal to the node data 
+    // return node
+    else {
+      return setTimeout(() => {
+        node.isSearched = false;
+        return node;
+      }, 1000)
+    }
+  }
 }
