@@ -74,9 +74,9 @@ function BST_Component() {
         setRefreshTree(!refreshTree)
     }
 
-    const searchKeyInBinaryTree = () => {
+    const searchKeyInBinaryTree = async() => {
         if (BST_Tree.root !== null) {
-            const searchedKeyNode = BST_Tree.search(BST_Tree.root, Number(searchKey), setRefreshTree);
+            const searchedKeyNode = await BST_Tree.search(BST_Tree.root, Number(searchKey), setRefreshTree);
             if (!searchedKeyNode) {
                 setSearchKeyFound(true);
                 setRefreshTree(!refreshTree)
@@ -111,6 +111,7 @@ function BST_Component() {
                         onChange={(e) => setSearchKey(e.target.value)}
                         onFocus={()=> {
                             setHighLightKey(null)
+                            setSearchKeyFound(false);
                             BST_Tree.preOrderSetTraverse(BST_Tree.root)
                         }}
                         label='Search Key in Binary Tree'
@@ -125,7 +126,7 @@ function BST_Component() {
                     </Button>
                 </Grid>
             </Grid>
-            {searchKeyfound && searchKey && <Typography sx={{ mt: 1 }} variant='body1'>
+            {searchKeyfound && searchKey && <Typography sx={{ mt: 1 }} variant='h6'>
                 {'Searched Key Not Exist in the below Binary Tree'}
             </Typography>}
             {BST_Tree && BST_Tree.root ?

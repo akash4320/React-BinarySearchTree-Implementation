@@ -93,7 +93,6 @@ export class BinarySearchTree {
     }
     if (node === null) {
       setRefreshTree((refreshTree) => !refreshTree)
-      await timer(300);
       return null;
     }
 
